@@ -11,5 +11,4 @@ export default class TaskModel {
   get tasks() {
     return this._tasks;
   }
-
 }
