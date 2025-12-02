@@ -37,6 +37,17 @@ export default class TaskController {
       this.view.error('Пожалуйста, введите задачу.');
       return;
     }
+
+    // Проверка на дублирование
+    const isDuplicate = this.model.tasks.some(
+      (t) => t.name.trim().toLowerCase() === text.toLowerCase()
+    );
+
+    if(isDuplicate) {
+      this.view.error('Задача с таким названием существует.');
+      return;
+    }
+
     this.view.error('');
     const newTask = new Task(this.model.taskIdCounter++, text);
     this.model.addTask(newTask);
